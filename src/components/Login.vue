@@ -30,7 +30,7 @@
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary">登录</el-button>
+          <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
         </el-form-item>
       </el-form>
@@ -44,8 +44,8 @@ export default {
     return {
       //登录表单数据绑定对象
       loginForm: {
-        username: "zs",
-        password: "123"
+        username: 'admin',
+        password: '123456'
       },
       //表单验证规则对象
       loginFormRules: {
@@ -53,41 +53,58 @@ export default {
         username: [
           {
             required: true,
-            message: "请输入登录名称",
-            trigger: "blur"
+            message: '请输入登录名称',
+            trigger: 'blur'
           },
           {
             min: 3,
             max: 10,
-            message: "长度在 3 到 10 个字符",
-            trigger: "blur"
+            message: '长度在 3 到 10 个字符',
+            trigger: 'blur'
           }
         ],
         //验证密码
         password: [
           {
             required: true,
-            message: "请输入登录密码",
-            trigger: "blur"
+            message: '请输入登录密码',
+            trigger: 'blur'
           },
           {
             min: 6,
             max: 15,
-            message: "长度在 6 到 15 个字符",
-            trigger: "blur"
+            message: '长度在 6 到 15 个字符',
+            trigger: 'blur'
           }
         ]
       }
-    };
+    }
   },
   methods: {
     //点击重置登录表单
     resetLoginForm() {
-      // console.log(this)
-      this.$refs.loginFormRef.resetFields();
+      this.$refs.loginFormRef.resetFields()
+    },
+    login() {
+      this.$refs.loginFormRef.validate(async valid => {
+        if (!valid) return
+        const { data: res } = await this.$http.post('login', this.loginForm)
+        if (res.meta.status !== 200) {
+          this.$message.error('登陆失败')
+          return
+        } else {
+          this.$message.success('登陆成功')
+          //1.将登陆成功之后的token，保存到客户端的 sessionStorage中
+          //2.项目中除了登录之外的其他API接口，必须在登录之后才能访问
+          //3.token只应在当前网站打开期间生效，所以将token保存在sessionStorage中
+          window.sessionStorage.setItem('token', res.data.token)
+          //4.通过编程式导航跳转到后台主页，路由地址是/home
+          this.$router.push('/home')
+        }
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
