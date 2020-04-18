@@ -17,7 +17,7 @@
         <el-menu
           background-color="#333744"
           text-color="#fff"
-          active-text-color="#00cc00"
+          active-text-color="#33aeff"
           unique-opened
           :collapse="isCollapse"
           :collapse-transition="false"
@@ -130,8 +130,8 @@ export default {
     display: flex;
     align-items: center;
     img {
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background-color: #fff;
     }
