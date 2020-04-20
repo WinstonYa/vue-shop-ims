@@ -43,23 +43,27 @@
           <template v-slot="slot">
             <el-switch
               v-model="slot.row.mg_state"
-              @change="userStateChanged(scope.row)"
+              @change="userStateChanged(slot.row)"
             ></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="180">
           <template v-slot="slot">
+            <!-- 修改按钮 -->
             <el-button
               type="primary"
               icon="el-icon-edit"
               size="mini"
               @click="showEditDialog(slot.row.id)"
             ></el-button>
+            <!-- 删除按钮 -->
             <el-button
               type="danger"
               icon="el-icon-delete"
               size="mini"
+              @click="removeUserById(slot.row.id)"
             ></el-button>
+            <!-- 角色分配按钮 -->
             <el-tooltip
               class="item"
               effect="dark"
@@ -122,7 +126,12 @@
     </el-dialog>
 
     <!-- 修改用户的对话框 -->
-    <el-dialog title="修改用户" :visible.sync="editDialogVisible" width="50%">
+    <el-dialog
+      title="修改用户"
+      :visible.sync="editDialogVisible"
+      width="50%"
+      @close="editDialogClosed"
+    >
       <el-form
         :model="editForm"
         :rules="editFormRules"
@@ -140,10 +149,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editDialogVisible = false"
-          >确 定</el-button
-        >
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editUserInfo">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -154,7 +161,7 @@ export default {
   data() {
     // 自定义邮箱规则
     var checkEmail = (rule, value, callback) => {
-      const regEmail = /^\w+@\w+(\.\w+)+$/
+      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
         // 合法邮箱
         return callback()
@@ -163,7 +170,7 @@ export default {
     }
     // 自定义手机号规则
     var checkMobile = (rule, value, callback) => {
-      const regMobile = /^1[34578]\d{9}$/
+      const regMobile = /^[1][3,4,5,7,8][0-9]{9}$/
       if (regMobile.test(value)) {
         return callback()
       }
@@ -252,19 +259,16 @@ export default {
     },
     // 监听 pagesize改变的事件
     handleSizeChange(newSize) {
-      // console.log(newSize)
       this.queryInfo.pagesize = newSize
       this.getUserList()
     },
     // 监听 页码值 改变事件
     handleCurrentChange(newSize) {
-      // console.log(newSize)
       this.queryInfo.pagenum = newSize
       this.getUserList()
     },
     // 监听 switch开关 状态改变
     async userStateChanged(userInfo) {
-      // console.log(userInfo)
       const { data: res } = await this.$http.put(
         `users/${userInfo.id}/state/${userInfo.mg_state}`
       )
@@ -282,7 +286,6 @@ export default {
     addUser() {
       // 提交请求前，表单预验证
       this.$refs.addUserFormRef.validate(async valid => {
-        // console.log(valid)
         // 表单预校验失败
         if (!valid) return
         const { data: res } = await this.$http.post('users', this.addUserForm)
@@ -304,6 +307,63 @@ export default {
       }
       this.editForm = res.data
       this.editDialogVisible = true
+    },
+    // 监听 修改用户对话框的关闭事件
+    editDialogClosed() {
+      this.$refs.editFormRef.resetFields()
+    },
+    //修改用户信息并提交
+    editUserInfo() {
+      this.$refs.editFormRef.validate(async valid => {
+        if (!valid) return
+        //发起修改用户信息的数据请求
+        const { data: res } = await this.$http.put(
+          'users/' + this.editForm.id,
+          {
+            email: this.editForm.email,
+            mobile: this.editForm.mobile
+          }
+        )
+        if (res.meta.status !== 200) {
+          this.$message.error('更新用户信息失败')
+          return
+        }
+        //关闭对话框
+        this.editDialogVisible = false
+        //刷新数据列表
+        this.getUserList()
+        //提示修改成功
+        this.$message.success('更新用户信息成功')
+      })
+    },
+    //根据id删除用户对应的信息
+    async removeUserById(id) {
+      //询问是否删除用户
+      const confirmResult = await this.$confirm(
+        '此操作将永久删除该用户, 是否继续?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).catch(err => err)
+
+      //如果用户确认删除，则返回值为字符串 confirm
+      //如果用户取消了删除，则返回值为字符串 cancel
+      if (confirmResult !== 'confirm') {
+        this.$message.info('已经取消删除')
+        return
+      }
+
+      const { data: res } = await this.$http.delete('users/' + id)
+
+      if (res.meta.status !== 200) {
+        this.$message.error('删除用户失败')
+      } else {
+        this.$message.success('删除用户成功')
+        this.getUserList()
+      }
     }
   }
 }
