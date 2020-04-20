@@ -263,8 +263,8 @@ export default {
       this.getUserList()
     },
     // 监听 页码值 改变事件
-    handleCurrentChange(newSize) {
-      this.queryInfo.pagenum = newSize
+    handleCurrentChange(newPage) {
+      this.queryInfo.pagenum = newPage
       this.getUserList()
     },
     // 监听 switch开关 状态改变

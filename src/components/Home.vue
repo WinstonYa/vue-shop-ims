@@ -99,7 +99,6 @@ export default {
         return
       } else {
         this.menulist = res.data
-        console.log(this.menulist)
       }
     },
     //点击按钮，切换菜单的折叠与展开
