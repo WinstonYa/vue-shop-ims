@@ -111,16 +111,18 @@ export default {
 .login-container {
   background-color: #2b4b6b;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .login-box {
   width: 450px;
-  height: 300px;
+  height: 360px;
   background-color: #fff;
   border-radius: 3px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
 
   .avatar-box {
     width: 130px;
