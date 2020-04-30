@@ -4,8 +4,8 @@
 
 
 
-##  电商后台管理系统(前端项目）  [预览](http://huangzun.top:8888/)
-### 后端API接口源码  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).  [接口API](./api接口文档.md)
+##  电商后台管理系统(前端项目）
+### 后端API接口源码  [下载](https://github.com/WinstonYa/vue-shop-API).  [接口API](./api接口文档.md)
 
 ### 功能
 
@@ -13,14 +13,14 @@
 
 
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc01.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc01.png)
 
 
 ### 开发模式
 
 > 电商后台管理系统整体采用前后端分离的开发模式,其中前端项目是基于Vue技术栈的SPA项目
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc02.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc02.png)
 
 ### 技术选型
 
@@ -46,7 +46,7 @@
 
   ##### [接口API](./api接口文档.md).
 
-  后端源码  [下载](https://gitee.com/wBekvam/vueShop-api-server.git).
+  后端源码  [下载](https://github.com/WinstonYa/vue-shop-API).
 
 ### 项目初始化
 
@@ -61,7 +61,7 @@
 
 ##### 相关依赖-按需导入
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc03.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc03.png)
 
 #### 后端项目的环境安装配置
 
@@ -89,7 +89,7 @@
 3. 通过sesion在服务器端记录状态
 4. 通过token维持状态(不允许跨域使用)
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc04.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc04.png)
 
 #### 登录业务流程
 
@@ -157,7 +157,7 @@ axios.interceptors.request.use(config => {
 
 > 通过权限管理模块控制不同的用户可以进行哪些操作,具体可以通过角色的方式进行控制,即每个用户分配一个特定的角色,角色包括不同的功能权限
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc05.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc05.png)
 
 
 
@@ -431,7 +431,7 @@ app.use(compression())
 6. pm2 delete 自定义名称 //删除项目
 ```
 
-![](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/mall_desc06.png)
+![](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/mall_desc06.png)
 
 
 
@@ -450,38 +450,38 @@ app.use(compression())
 
 ### Project preview
 
-![welcome](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/welcome.png)
+![welcome](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/welcome.png)
 
 
-![welcome](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/login.png)
+![welcome](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/login.png)
 
 
-![user](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/user.png)
-
-
-
-![user1](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/user1.png)
+![user](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/user.png)
 
 
 
-![role](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/role.png)
+![user1](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/user1.png)
 
 
 
-![auth](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/auth.png)
+![role](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/role.png)
 
 
-![goods](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/goods.png)
+
+![auth](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/auth.png)
 
 
-![params](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/params.png)
+![goods](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/goods.png)
 
 
-![addGoods](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/addGoods.png)
+![params](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/params.png)
 
 
-![addGoods1](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/addGoods1.png)
+![addGoods](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/addGoods.png)
 
 
-![data](https://gitee.com/wBekvam/vue-shop-admin/raw/master/image/data.png)
+![addGoods1](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/addGoods1.png)
+
+
+![data](https://github.com/WinstonYa/vue-shop-ims/blob/master/image/data.png)
 
