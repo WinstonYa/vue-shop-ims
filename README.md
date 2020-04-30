@@ -5,7 +5,7 @@
 
 
 ##  电商后台管理系统(前端项目）
-### 后端API接口源码  [下载](https://github.com/WinstonYa/vue-shop-API).  [接口API](./api接口文档.md)
+### 后端API接口源码  [下载](https://github.com/WinstonYa/vue-shop-API).  [接口API](https://github.com/WinstonYa/vue-shop-API/blob/master/api%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.md)
 
 ### 功能
 
@@ -44,7 +44,7 @@
 
 - Sequelize
 
-  ##### [接口API](./api接口文档.md).
+  ##### [接口API](https://github.com/WinstonYa/vue-shop-API/blob/master/api%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3.md).
 
   后端源码  [下载](https://github.com/WinstonYa/vue-shop-API).
 
